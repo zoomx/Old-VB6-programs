@@ -16,25 +16,57 @@ Begin VB.Form frmOptions
    ScaleWidth      =   6195
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame Frame7 
+      Caption         =   "Gruppi di misure"
+      Height          =   615
+      Left            =   2160
+      TabIndex        =   33
+      Top             =   4320
+      Width           =   1455
+      Begin VB.TextBox tGruppiMisure 
+         Height          =   285
+         Left            =   120
+         TabIndex        =   34
+         Text            =   "1"
+         Top             =   240
+         Width           =   1095
+      End
+   End
+   Begin VB.Frame Frame6 
+      Caption         =   "Stazione"
+      Height          =   615
+      Left            =   4200
+      TabIndex        =   31
+      Top             =   4320
+      Width           =   1815
+      Begin VB.TextBox tStazione 
+         Height          =   300
+         Left            =   120
+         MaxLength       =   20
+         TabIndex        =   32
+         Top             =   240
+         Width           =   1596
+      End
+   End
    Begin VB.Frame Frame5 
       Caption         =   "Anemometro"
       Height          =   600
       Left            =   90
-      TabIndex        =   30
+      TabIndex        =   28
       Top             =   4950
-      Width           =   2040
+      Width           =   1800
       Begin VB.TextBox tmsxcount 
          Height          =   285
-         Left            =   1305
-         TabIndex        =   32
+         Left            =   1080
+         TabIndex        =   30
          Top             =   225
          Width           =   600
       End
       Begin VB.Label Label9 
-         Caption         =   "m/s per pulse/s"
+         Caption         =   "Hz per m/s"
          Height          =   240
          Left            =   90
-         TabIndex        =   31
+         TabIndex        =   29
          Top             =   270
          Width           =   1275
       End
@@ -43,13 +75,13 @@ Begin VB.Form frmOptions
       Caption         =   "Pluviometro"
       Height          =   645
       Left            =   90
-      TabIndex        =   27
+      TabIndex        =   25
       Top             =   4320
-      Width           =   2040
+      Width           =   1800
       Begin VB.TextBox tmmxcount 
          Height          =   285
-         Left            =   1305
-         TabIndex        =   29
+         Left            =   1080
+         TabIndex        =   27
          Top             =   225
          Width           =   600
       End
@@ -57,18 +89,10 @@ Begin VB.Form frmOptions
          Caption         =   "mm per pulse"
          Height          =   240
          Left            =   90
-         TabIndex        =   28
+         TabIndex        =   26
          Top             =   270
          Width           =   1095
       End
-   End
-   Begin VB.TextBox tStazione 
-      Height          =   300
-      Left            =   4245
-      MaxLength       =   20
-      TabIndex        =   25
-      Top             =   4440
-      Width           =   1596
    End
    Begin VB.CommandButton cmdApply 
       Caption         =   "&Applica"
@@ -426,14 +450,6 @@ Begin VB.Form frmOptions
          Strikethrough   =   0   'False
       EndProperty
    End
-   Begin VB.Label Label10 
-      Caption         =   "Stazione"
-      Height          =   270
-      Left            =   3525
-      TabIndex        =   26
-      Top             =   4515
-      Width           =   660
-   End
 End
 Attribute VB_Name = "frmOptions"
 Attribute VB_GlobalNameSpace = False
@@ -586,6 +602,7 @@ Private Sub bSalva_Click()
     Next
     Print #Filnb, Str(mmxcount)
     Print #Filnb, Str(msxcount)
+    Print #Filnb, Str(GruppiMisure)
     
     FileOut = ""
     Me.MousePointer = vbDefault
@@ -646,7 +663,7 @@ Private Sub bLeggi_Click()
     
     Input #Filnb, mmxcount
     Input #Filnb, msxcount
-    
+    Input #Filnb, GruppiMisure
     
     FileOut = ""
     Me.MousePointer = vbDefault
@@ -693,6 +710,7 @@ Private Sub cmdApply_Click()
     Canale(i).UnitaMisura = tUnita.Text
     mmxcount = Val2(tmmxcount.Text)
     msxcount = Val2(tmsxcount.Text)
+    GruppiMisure = Val2(tGruppiMisure.Text)
 End Sub
 
 Private Sub cmdCancel_Click()
@@ -773,6 +791,7 @@ Public Sub AggiornaTbs(Elemento As Integer)
     tUnita.Text = Trim(Canale(i).UnitaMisura)
     tmmxcount.Text = Format(mmxcount)
     tmsxcount.Text = Format(msxcount)
+    tGruppiMisure.Text = Format(GruppiMisure)
     Me.Refresh
 End Sub
 
@@ -807,7 +826,7 @@ Public Sub Applica(scheda As Integer)
     Canale(i).UnitaMisura = tUnita.Text
     mmxcount = Val2(tmmxcount.Text)
     msxcount = Val2(tmsxcount.Text)
-
+    GruppiMisure = Val2(tGruppiMisure.Text)
 End Sub
 
 Public Sub To4095()

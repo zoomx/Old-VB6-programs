@@ -644,7 +644,7 @@ retry2:
     End If
                          
     'controlla se nella risposta c'e' Simamet
-    iSimamet = InStr(Risposta, "Simamet")
+    iSimamet = InStr(Risposta, "SIMAMET")
     If iSimamet = 0 Then
         Messaggio = "Il modem ha risposto ma la centralina Simamet ha dato una risposta errata->" + Risposta + vbCrLf
         Messaggio = Messaggio + "Potrebbe trattarsi di un problema della centralina o di" + vbCrLf

@@ -149,6 +149,8 @@ Dim RS As String
 Dim iBlocco As Long
 Dim i As Long
 Dim j As Long
+Dim k As Long
+Dim Base As Long
 Dim Tempog As Double  'tempo in giorni
 Dim Tempo As Long
 Dim dTempo As String
@@ -167,6 +169,11 @@ Dim iResponse As Integer
 Dim Emergenza As Boolean
 Dim QuantiDati As Long
 Dim Tutti255 As Boolean
+Dim Vento As Double
+Dim sLungo As Single
+Dim Formato_sLungo As String
+
+Formato_sLungo = "#####0.##"
 
 Tutti255 = False
 Emergenza = False
@@ -187,7 +194,7 @@ ProgressBar1.value = 0
 
 DoEvents
 
-
+'GoTo Leggibin          '*****************************************
 
 'Manda il comando di InfoAcq
 OpenCom
@@ -301,7 +308,7 @@ iBloccoDati = 0
 ReDim BloccoDati(DFPNT + 100)
 Do
     DoEvents
-    TimeStop = Timer + 1
+    TimeStop = Timer + 10
     Do
         DoEvents
     Loop Until (fMain.MSComm1.InBufferCount >= 1) Or (Timer > TimeStop)
@@ -335,8 +342,9 @@ Do
         Label2 = Format(iBloccoDati)
         TimeOuts = 0
     End If
-    If TimeOuts > 3 Then Exit Do
-    
+    If TimeOuts > 10 Or Bytes >= DFPNT Then Exit Do
+'        If TimeOuts > 10 Then Exit Do
+
     
     DoEvents
     
@@ -361,6 +369,15 @@ Open Dummy For Binary As #Filnb
 '    Next
 Put #Filnb, , BloccoDati()
 Close Filnb
+
+'Leggibin:  '**************************************************
+'Filnb = FreeFile
+'Open "a:\20020702101310.bin" For Binary As #Filnb
+'ReDim BloccoDati(LOF(Filnb))
+'Get #Filnb, , BloccoDati()
+'Close Filnb
+'iBloccoDati = UBound(BloccoDati())
+'DFPNT = iBloccoDati
 
 
 If fDebug Then Print #fdn, "Byte Scaricati"; iBloccoDati
@@ -480,6 +497,13 @@ Stringa = SwapString(bMID(BloccoDati, iBlocco, 4))
 msxcount = String2single(Stringa)
 iBlocco = iBlocco + 4
 
+'leggo GruppiMisure
+Stringa = bMID(BloccoDati, iBlocco, 4)
+GruppiMisure = String2long(Stringa)
+'GruppiMisure = String2single(Stringa)
+iBlocco = iBlocco + 4
+
+
 'Controllo che il resto dei dati non sia zero!
 
 lStazione = BloccoDati(iBlocco)
@@ -557,6 +581,7 @@ If bAscii = True Then
     Print #Filnb, " alle "; POra; ":"; PMinuti; ":"; PSecondi
     Print #Filnb, "Intervallo di campionamento "; Intervallo; " secondi"
     Print #Filnb, "Tensione batteria "; fMain.StatusBar1.Panels(1).Text; " volt"
+    Print #Filnb, "Gruppi di misure = "; GruppiMisure
     Print #Filnb,
     Print #Filnb, "Canali"
     Print #Filnb,
@@ -591,18 +616,40 @@ If bAscii = True Then
     
     Print #Filnb, Str(iDumm + 1); ";Pluviometro,mm;"; mmxcount
     Print #Filnb, Str(iDumm + 2); ";Anemometro,m/s;"; msxcount
-    
+
     
     Print #Filnb,
     'Qui si dovrebbe stampare l'intestazione delle colonne
     Print #Filnb, "Data";
-    For i = 0 To MaxCanali
+    Print #Filnb, ";pCount;Pioggia;bCount;Batteria;";
+    Stringa = ""
+    For j = 1 To GruppiMisure
+        Stringa = Stringa + "v1Count_" + Trim(Str(j)) + ";Vento1_" + Trim(Str(j))
+        Stringa = Stringa + ";miv1Count_" + Trim(Str(j)) + ";minVento1_" + Trim(Str(j)) + ";"     'v2Count;Vento2;miv2Count;minVento2;mav2Count;maxVento2;"
+        Stringa = Stringa + "mav1Count_" + Trim(Str(j)) + ";maxVento1_" + Trim(Str(j)) + ";"
+        Stringa = Stringa + "prCount_" + Trim(Str(j)) + ";Pressione_" + Trim(Str(j)) + ";miprCount_" + Trim(Str(j)) + ";"
+        Stringa = Stringa + "minPressione_" + Trim(Str(j)) + ";maprCount_" + Trim(Str(j)) + ";"
+        Stringa = Stringa + "maxPressione_" + Trim(Str(j)) + ";dirvCount_" + Trim(Str(j)) + ";"
+        Stringa = Stringa + "Direz.Vento_" + Trim(Str(j)) + ";midvCount_" + Trim(Str(j)) + ";"
+        Stringa = Stringa + "minDirVento_" + Trim(Str(j)) + ";madvCount_" + Trim(Str(j)) + ";maxDirVento_" + Trim(Str(j)) + ";"
+'        Print #Filnb, "v1Count;Vento1;miv1Count;minVento1;mav1Count;";
+'        Print #Filnb, "maxVento1;v2Count;Vento2;miv2Count;minVento2;";
+'        Print #Filnb, "mav2Count;maxVento2;prCount;Pressione;miprCount;";
+'        Print #Filnb, "minPressione;maprCount;maxPressione;dirvCount;";
+'        Print #Filnb, "Direz.Vento;midvCount;minDirVento;madvCount;";
+'        Print #Filnb, "maxDirVento;";
+    Next j
+    'elimino l'ultimo punto e virgola
+    Stringa = Left$(Stringa, Len(Stringa) - 1)
+    Print #Filnb, Stringa;
+    For i = 2 To MaxCanali
         If Canale(i).Attivo = True Then
             Print #Filnb, ";count;";
             Print #Filnb, Trim(Canale(i).Nome);
         End If
     Next
-    Print #Filnb, ";count;Pioggia;count;Vento;count;Batteria"
+    Print #Filnb,
+
 Else
     Stazione = stringC(Stazione, 20)
     Put #Filnb, , Stazione
@@ -655,7 +702,8 @@ If bAscii Then
     Tempog = Dat2Ser(CDate(PData))
     'per ogni gruppo di misure prese allo stesso tempo
     'Debug.Print "Iblocco="; iBlocco
-    For i = iBlocco To DFPNT Step (2 * (CanaliAttivi + 3))
+    'Misure=NumeroCanaliAttivi+Pioggia+(Vento+minVento+maxVento)*2+Batteria
+    For i = iBlocco To DFPNT Step (2 * (12 * GruppiMisure + CanaliAttivi))
         ProgressBar1.value = i
         'trasformazione data corrente
         Stringa = CDate(Tempog)
@@ -663,52 +711,154 @@ If bAscii Then
         Print #Filnb, dTempo;
         'Print #Filnb, Format(dTempo, "dd/mm/yyyy hh:mm"); ";";
         'per ogni canale
-        For j = 1 To CanaliAttivi
-            
-            'Stabilisco il canale da leggere
-            nCanale = j - 1
-            'leggo e converto la misura
-            Stringa = bMID(BloccoDati, i + (j - 1) * 2, 2)
-            'Stringa = SwapString(Stringa)
-            Lungo = String2long(Stringa)
-            Print #Filnb, ";"; Lungo; ";";
-            Stringa = Count2value(nCanale, Lungo)
-            'Convertire la misura?
-            Print #Filnb, Stringa;
-        Next
-        j = i + (j - 1) * 2 '(forse+2)
+        Base = i
         'leggiamo la pioggia
-        Stringa = bMID(BloccoDati, j, 2)
+        Stringa = bMID(BloccoDati, Base, 2)
         Lungo = String2long(Stringa)
         Print #Filnb, ";"; Lungo; ";";
         Stringa = Format(Str(Lungo * mmxcount), "#0.00")
         Print #Filnb, Stringa;
-        'leggiamo il vento
-        Stringa = bMID(BloccoDati, j + 2, 2)
-        Lungo = String2long(Stringa)
-        Print #Filnb, ";"; Lungo; ";";
-        Stringa = Format(Str(Lungo * msxcount), "##0.00")
-        Print #Filnb, Stringa;
+               
         'leggiamo la tensione batteria
-         Stringa = bMID(BloccoDati, j + 4, 2)
+         Stringa = bMID(BloccoDati, Base + 2, 2)
         Lungo = String2long(Stringa)
         Print #Filnb, ";"; Lungo; ";";
         Stringa = Format((CSng(Lungo) / 65535 * 5 * FattoreBatteriaInterna), "#0.00")
-        Print #Filnb, Stringa
+        Print #Filnb, Stringa;
+
+        Base = Base + 4
+        
+        For k = 0 To GruppiMisure - 1
+            'leggiamo il vento1
+            Stringa = bMID(BloccoDati, Base + k * 24, 2)
+            Lungo = String2long(Stringa)
+            sLungo = Lungo / 5 'Perchè si tratta della somma di 16 campioni
+            'Print #Filnb, ";"; Lungo; ";";
+            Print #Filnb, ";"; Format(sLungo, Formato_sLungo); ";";
+            Vento = sLungo / 3 'Perchè l'acquisizione è lunga 3 secondi
+            Vento = Vento / msxcount
+            Stringa = Format(Vento, "##0.00")
+            Print #Filnb, Stringa;
+            'leggiamo il minVento1
+            Stringa = bMID(BloccoDati, Base + k * 24 + 2, 2)
+            Lungo = String2long(Stringa)
+            Print #Filnb, ";"; Lungo; ";";
+            Vento = Lungo / 3
+            Vento = Vento / msxcount
+            Stringa = Format(Vento, "##0.00")
+            Print #Filnb, Stringa;
+            'leggiamo il maxVento1
+            Stringa = bMID(BloccoDati, Base + k * 24 + 4, 2)
+            Lungo = String2long(Stringa)
+            Print #Filnb, ";"; Lungo; ";";
+            Vento = Lungo / 3
+            Vento = Vento / msxcount
+            Stringa = Format(Vento, "##0.00")
+            Print #Filnb, Stringa;
+'            'leggiamo il vento2
+'            Stringa = bMID(BloccoDati, Base + k * 24 + 6, 2)
+'            Lungo = String2long(Stringa)
+'            sLungo = Lungo / 16
+'            'Print #Filnb, ";"; Lungo; ";";
+'            Print #Filnb, ";"; Format(sLungo, Formato_sLungo); ";";
+'            If sLungo = 0 Then
+'                Vento = 0
+'            Else
+'                Vento = sLungo * 1.66
+'                Vento = 1000 / Vento '1/Vento*1000
+'                Vento = Vento / msxcount
+'            End If
+'            Stringa = Format(Vento, "##0.00")
+'            Print #Filnb, Stringa;
+'            'leggiamo il minVento2
+'            Stringa = bMID(BloccoDati, Base + k * 24 + 8, 2)
+'            Lungo = String2long(Stringa)
+'            Print #Filnb, ";"; Lungo; ";";
+'            If Lungo = 0 Then
+'                Vento = 0
+'            Else
+'                Vento = Lungo * 1.66
+'                Vento = 1000 / Vento '1/Vento*1000
+'                Vento = Vento / msxcount
+'            End If
+'            Stringa = Format(Vento, "##0.00")
+'            Print #Filnb, Stringa;
+'            'leggiamo il maxVento2
+'            Stringa = bMID(BloccoDati, Base + k * 24 + 10, 2)
+'            Lungo = String2long(Stringa)
+'            Print #Filnb, ";"; Lungo; ";";
+'            If Lungo = 0 Then
+'                Vento = 0
+'            Else
+'                Vento = Lungo * 1.66
+'                Vento = 1000 / Vento '1/Vento*1000
+'                Vento = Vento / msxcount
+'            End If
+'            Stringa = Format(Vento, "##0.00")
+'            Print #Filnb, Stringa;
+            'Leggiamo pressione
+            Stringa = bMID(BloccoDati, Base + k * 24 + 12, 2)
+            Lungo = String2long(Stringa)
+            sLungo = Lungo / 5
+            'Print #Filnb, ";"; sLungo; ";";
+            Print #Filnb, ";"; Format(sLungo, Formato_sLungo); ";";
+            'Stringa = Count2value(CanalePressione, sLungo)
+            Stringa = CountDec2value(CanalePressione, sLungo)
+            Print #Filnb, Stringa;
+            'Leggiamo minPressione
+            Stringa = bMID(BloccoDati, Base + k * 24 + 14, 2)
+            Lungo = String2long(Stringa)
+            Print #Filnb, ";"; Lungo; ";";
+            Stringa = Count2value(CanalePressione, Lungo)
+            Print #Filnb, Stringa;
+            'Leggiamo maxPressione
+            Stringa = bMID(BloccoDati, Base + k * 24 + 16, 2)
+            Lungo = String2long(Stringa)
+            Print #Filnb, ";"; Lungo; ";";
+            Stringa = Count2value(CanalePressione, Lungo)
+            Print #Filnb, Stringa;
+            'Leggiamo DirezioneVento
+            Stringa = bMID(BloccoDati, Base + k * 24 + 18, 2)
+            Lungo = String2long(Stringa)
+            sLungo = Lungo / 5
+            'Print #Filnb, ";"; sLungo; ";";
+            Print #Filnb, ";"; Format(sLungo, Formato_sLungo); ";";
+            'Stringa = Count2value(CanaleDirezioneVento, Lungo)
+            Stringa = CountDec2value(CanaleDirezioneVento, sLungo)
+            Print #Filnb, Stringa;
+            'Leggiamo minDirezioneVento
+            Stringa = bMID(BloccoDati, Base + k * 24 + 20, 2)
+            Lungo = String2long(Stringa)
+            Print #Filnb, ";"; Lungo; ";";
+            Stringa = Count2value(CanaleDirezioneVento, Lungo)
+            Print #Filnb, Stringa;
+            'Leggiamo maxDirezioneVento
+            Stringa = bMID(BloccoDati, Base + k * 24 + 22, 2) 'ex22
+            Lungo = String2long(Stringa)
+            Print #Filnb, ";"; Lungo; ";";
+            Stringa = Count2value(CanaleDirezioneVento, Lungo)
+            Print #Filnb, Stringa;
+            
+        Next k
+        Base = Base + 24 * GruppiMisure
+        For j = 3 To CanaliAttivi
+            'Stabilisco il canale da leggere
+            nCanale = j - 1
+            'If nCanale >= 1 Then nCanale = nCanale + 1
+            'risolve il casino della direzione del
+            'vento in mezzo ai dati da prendere
+
+            k = j - 3
+            'leggo e converto la misura
+            Stringa = bMID(BloccoDati, Base + k * 2, 2)
+            'Stringa = SwapString(Stringa)
+            Lungo = String2long(Stringa)
+            Print #Filnb, ";"; Lungo; ";";
+            Stringa = Count2value(nCanale, Lungo)
+            Print #Filnb, Stringa;
+        Next
+        Print #Filnb,
        
-'        j = CanaliAttivi
-'        'Stabilisco il canale da leggere
-'        nCanale = j - 1
-'        'Print #Filnb, Str(nCanale); ",";
-'        'leggo e converto la misura
-'        stringa = bMID(BloccoDati, i + (j - 1) * 2, 2)
-'        'Stringa = SwapString(Stringa)
-'        Lungo = String2long(stringa)
-'        Print #Filnb, Lungo; ",";
-'        Float = sCount2value(nCanale, Lungo)
-'        'Convertire la misura?
-'        Print #Filnb, Float
-'        Print #Filnb,
         Tempog = Tempog + (Intervallo / 86400)
     Next
 Else
@@ -790,6 +940,16 @@ Private Function Count2value(i As Byte, Valore As Long) As String
     (Canale(i).Bitmax - Canale(i).Bitmin) * _
     (Canale(i).valMax - Canale(i).valMin) + Canale(i).valMin + Canale(i).valOff
     Count2value = valore2
+End Function
+
+Private Function CountDec2value(i As Byte, Valore As Single) As String
+    'Trasforma un valore un count in una misura.
+    'Il numero del canale è quello del TFX11 e non di SimaPro
+    Dim valore2 As Single
+    valore2 = (Valore - Canale(i).Bitmin) / _
+    (Canale(i).Bitmax - Canale(i).Bitmin) * _
+    (Canale(i).valMax - Canale(i).valMin) + Canale(i).valMin + Canale(i).valOff
+    CountDec2value = valore2
 End Function
 
 Private Function sCount2value(i As Byte, Valore As Long) As String

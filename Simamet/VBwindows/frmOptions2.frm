@@ -610,7 +610,7 @@ Private Sub bSalva_Click()
     Next
     Print #Filnb, Str(mmxcount)
     Print #Filnb, Str(msxcount)
-   
+    Print #Filnb, Str(GruppiMisure)
     
     FileOut = ""
     Me.MousePointer = vbDefault
@@ -671,7 +671,7 @@ Private Sub bLeggi_Click()
     
     Input #Filnb, mmxcount
     Input #Filnb, msxcount
-    
+    Input #Filnb, GruppiMisure
     
     FileOut = ""
     Me.MousePointer = vbDefault
@@ -718,6 +718,7 @@ Private Sub cmdApply_Click()
     Canale(i).UnitaMisura = tUnita.Text
     mmxcount = Val2(tmmxcount.Text)
     msxcount = Val2(tmsxcount.Text)
+    'GruppiMisure = Val2(tGruppiMisure.Text)
 
 End Sub
 
@@ -805,6 +806,7 @@ Public Sub AggiornaTbs(Elemento As Integer)
     'CheckChan
     tmmxcount.Text = Format(mmxcount)
     tmsxcount.Text = Format(msxcount)
+    
 
 End Sub
 

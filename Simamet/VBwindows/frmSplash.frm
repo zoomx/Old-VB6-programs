@@ -39,7 +39,7 @@ Begin VB.Form frmSplash
          Width           =   2055
       End
       Begin VB.Label lblCopyright 
-         Caption         =   "Copyright 1999"
+         Caption         =   "Copyright 2002"
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   8.25
@@ -56,7 +56,7 @@ Begin VB.Form frmSplash
          Width           =   2415
       End
       Begin VB.Label lblCompany 
-         Caption         =   "Sima S.r.l."
+         Caption         =   "Istituto Nazionale di Geofisica e Vulcanologia - Sima S.r.l."
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   8.25
@@ -66,7 +66,7 @@ Begin VB.Form frmSplash
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   255
+         Height          =   495
          Left            =   4560
          TabIndex        =   3
          Top             =   3270
@@ -93,7 +93,7 @@ Begin VB.Form frmSplash
       Begin VB.Label lblVersion 
          Alignment       =   1  'Right Justify
          AutoSize        =   -1  'True
-         Caption         =   "Versione 2"
+         Caption         =   "Versione 3"
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   12

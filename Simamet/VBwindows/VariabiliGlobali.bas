@@ -95,7 +95,7 @@ Public Const MaxCanali As Integer = 17  'Numero di canali di acquisizione
 Public FileName As String
 Public Const Vero As Boolean = True
 Public Const Falso As Boolean = False
-Public Const TestataPrg As String = "Simamet Sensors Setup File"
+Public Const TestataPrg As String = "Simamet3 Sensors Setup File"
 Public Stazione As String
 Public Intervallo As Long  'Intevallo di campionamento in secondi
 Public Const MinimoIntervalloAcquisizione As Long = 30
@@ -123,5 +123,7 @@ Public lDebug As Boolean    'Se è vero fa comparire piu' pulsanti e menu special
                             'visibili in precedenti versioni e adesso nascosti
 
 Public mmxcount As Single   'mm per count del pluviometro
-Public msxcount As Single   'm/s per count dell'anemometro
-
+Public msxcount As Single   'Hz per m/s
+Public GruppiMisure As Integer  'Numero di gruppi di misure
+Public Const CanalePressione As Long = 0
+Public Const CanaleDirezioneVento As Long = 1

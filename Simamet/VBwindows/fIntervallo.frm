@@ -454,6 +454,7 @@ Private Sub bContinua_Click()
     
     fMain.MSComm1.Output = Trim(Str$(mmxcount)) + vbCr
     fMain.MSComm1.Output = Trim(Str$(msxcount)) + vbCr
+    fMain.MSComm1.Output = Trim(Str$(GruppiMisure)) + vbCr
     'fMain.MSComm1.InBufferSize = 1024
     'fMain.MSComm1.InBufferCount = 0
     'Attende il PARTITO!
