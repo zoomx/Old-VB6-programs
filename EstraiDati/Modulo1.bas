@@ -23,11 +23,16 @@ Type RecordsType
        AcK As Double
 End Type
 
+
 Public Db As ADODB.Connection
 Public Rec() As RecordsType
 Public StationName As String
 Public StationFile As String
 Public FileLog As String
+Public Stations(50) As String
+Public nStations As Integer
+Public PathName As String
+
 
 
 
@@ -50,7 +55,7 @@ strVersionInfo = "ADO Version: " & Db.Version & vbCr & _
    "Driver Version: " & Db.Properties("Driver Version") & vbCr & _
    "Driver ODBC Version: " & Db.Properties("Driver ODBC Version")
 
-MsgBox (strVersionInfo)
+'MsgBox (strVersionInfo)
 
 
 
@@ -75,3 +80,30 @@ Dim sTemp As String
         sGetAppPath = sTemp
 End Function
 
+Public Function GetStationsFromFile() As Boolean
+    Dim filename As String
+    Dim fn As Long
+    
+    GetStationsFromFile = False
+
+    
+    nStations = 1
+    filename = sGetAppPath + "Stations.txt"
+    
+    fn = FreeFile
+    On Error GoTo ErrorTrap
+    Open filename For Input As #fn
+    On Error GoTo 0
+    
+    Do Until EOF(fn)
+        Input #fn, Stations(nStations)
+        nStations = nStations + 1
+    Loop
+    Close fn
+    nStations = nStations - 1
+    If nStations > 0 Then GetStationsFromFile = True
+    
+    
+ErrorTrap:
+
+End Function
