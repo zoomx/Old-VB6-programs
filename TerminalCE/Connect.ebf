@@ -1,0 +1,432 @@
+VERSION 5.00
+Begin VB.Form frmConnect 
+   Caption         =   "Connection Settings"
+   ClientHeight    =   2370
+   ClientLeft      =   60
+   ClientTop       =   345
+   ClientWidth     =   2895
+   ScaleHeight     =   2370
+   ScaleWidth      =   2895
+   Begin VBCE.Label Label4 
+      Height          =   195
+      Left            =   120
+      TabIndex        =   12
+      Top             =   1920
+      Width           =   840
+      _cx             =   1482
+      _cy             =   344
+      Appearance      =   1
+      AutoSize        =   -1  'True
+      BackColor       =   -2147483633
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "RTS Enable"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.TextBox txtRTS 
+      Height          =   285
+      Left            =   1080
+      TabIndex        =   11
+      Top             =   1920
+      Width           =   600
+      _cx             =   2175
+      _cy             =   873
+      Appearance      =   1
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   "0"
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.CommandButton cmdOK 
+      Height          =   375
+      Left            =   1920
+      TabIndex        =   10
+      Top             =   1800
+      Width           =   855
+      _cx             =   2143
+      _cy             =   873
+      Appearance      =   1
+      BackColor       =   12632256
+      Caption         =   "&OK"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Style           =   0
+   End
+   Begin VBCE.ComboBox cboSettings 
+      Height          =   360
+      Left            =   1080
+      TabIndex        =   9
+      Top             =   480
+      Width           =   1335
+      List            =   "Connect.frx":0000
+      ItemData        =   "Connect.frx":0028
+      _cx             =   2355
+      _cy             =   635
+      Appearance      =   1
+      BackColor       =   -2147483643
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   "9600,N,8,1"
+      IntegralHeight  =   -1  'True
+      Locked          =   0   'False
+      Sorted          =   0   'False
+      Style           =   0
+   End
+   Begin VBCE.ComboBox cboPort 
+      Height          =   360
+      Left            =   1080
+      TabIndex        =   8
+      Top             =   120
+      Width           =   1335
+      List            =   "Connect.frx":0050
+      ItemData        =   "Connect.frx":0078
+      _cx             =   2355
+      _cy             =   635
+      Appearance      =   1
+      BackColor       =   -2147483643
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   "1"
+      IntegralHeight  =   -1  'True
+      Locked          =   0   'False
+      Sorted          =   0   'False
+      Style           =   0
+   End
+   Begin VBCE.TextBox txtST 
+      Height          =   285
+      Left            =   1080
+      TabIndex        =   2
+      Top             =   840
+      Width           =   600
+      _cx             =   2175
+      _cy             =   873
+      Appearance      =   1
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   "1"
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.TextBox txtRT 
+      Height          =   285
+      Left            =   1080
+      TabIndex        =   1
+      Top             =   1200
+      Width           =   600
+      _cx             =   2175
+      _cy             =   873
+      Appearance      =   1
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   "1"
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.TextBox txtIL 
+      Height          =   285
+      Left            =   1080
+      TabIndex        =   0
+      Top             =   1560
+      Width           =   600
+      _cx             =   2175
+      _cy             =   873
+      Appearance      =   1
+      BackColor       =   -2147483643
+      BorderStyle     =   1
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Text            =   "0"
+      Alignment       =   0
+      HideSelection   =   -1  'True
+      Locked          =   0   'False
+      MaxLength       =   0
+      MultiLine       =   0   'False
+      PasswordChar    =   ""
+      ScrollBars      =   0
+   End
+   Begin VBCE.Label Label9 
+      Height          =   195
+      Left            =   120
+      TabIndex        =   7
+      Top             =   120
+      Width           =   855
+      _cx             =   1508
+      _cy             =   344
+      Appearance      =   1
+      AutoSize        =   -1  'True
+      BackColor       =   -2147483633
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "Comm Port "
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.Label Label1 
+      Height          =   195
+      Left            =   120
+      TabIndex        =   6
+      Top             =   840
+      Width           =   870
+      _cx             =   1535
+      _cy             =   344
+      Appearance      =   1
+      AutoSize        =   -1  'True
+      BackColor       =   -2147483633
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "SThreshold "
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.Label Label2 
+      Height          =   195
+      Left            =   120
+      TabIndex        =   5
+      Top             =   1200
+      Width           =   885
+      _cx             =   1561
+      _cy             =   344
+      Appearance      =   1
+      AutoSize        =   -1  'True
+      BackColor       =   -2147483633
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "RThreshold "
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.Label Label3 
+      Height          =   195
+      Left            =   360
+      TabIndex        =   4
+      Top             =   480
+      Width           =   660
+      _cx             =   1164
+      _cy             =   344
+      Appearance      =   1
+      AutoSize        =   -1  'True
+      BackColor       =   -2147483633
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "Settings "
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+   Begin VBCE.Label Label7 
+      Height          =   195
+      Left            =   240
+      TabIndex        =   3
+      Top             =   1560
+      Width           =   720
+      _cx             =   1270
+      _cy             =   344
+      Appearance      =   1
+      AutoSize        =   -1  'True
+      BackColor       =   -2147483633
+      BackStyle       =   1
+      BorderStyle     =   0
+      Caption         =   "InputLen "
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   -2147483640
+      Alignment       =   0
+      UseMnemonic     =   -1  'True
+      WordWrap        =   0   'False
+   End
+End
+Attribute VB_Name = "frmConnect"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False
+'********************************************************************************
+'*
+'*  VBCEComm - Connection form code
+'*
+'*  Copyright (c) 1998 Microsoft Corporation
+
+Private Sub cmdOK_Click()
+    'Call SetSettings which passes settings back to the Comm control
+    SetSettings
+    'Hide frmConnect.  Enable and Show frmMain.
+    'This is necessary to achieve "modality".
+    frmConnect.Hide
+    frmMain.Enabled = True
+    frmMain.Show
+    'Call Continue Start which handles enabling/disabling
+    'the proper controls and updating frmMain.
+    ContinueStart
+End Sub
+
+Private Sub Form_Load()
+    'Initialize combo boxes
+    cboPort.AddItem "1"
+    cboPort.AddItem "2"
+    cboSettings.AddItem "9600,N,8,1"
+    cboSettings.AddItem "14400,N,8,1"
+    cboSettings.AddItem "19200,N,8,1"
+End Sub
+
+
+Private Sub Form_Unload(Cancel)
+    'This event is here in case the user clicks the
+    '"x" to dismiss the form and doesn't click "OK".
+    'Hide frmConnect.  Enable and Show frmMain.
+    'This is necessary to achieve "modality".
+    frmConnect.Hide
+    frmMain.Enabled = True
+    frmMain.Show
+End Sub
