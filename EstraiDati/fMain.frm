@@ -125,7 +125,7 @@ Private Sub bVai_Click()
     Dim fn As Long
     Dim fn1 As Long
     Dim fn2 As Long
-    
+    Dim Prefix As String
     
     On Error GoTo ErrorTrap
     
@@ -178,7 +178,16 @@ Private Sub bVai_Click()
         'crea la connessione
         Set Db = CreateObject("ADODB.Connection")
         DoEvents
-        Db.Open "DSN=WEST"
+        Prefix = Left$(StationName, 3)
+        Select Case Prefix
+            Case "str"
+                Db.Open "DSN=STROMBOLI"
+            Case "etn"
+                Db.Open "DSN=ETNA"
+            Case Else
+                Db.Open "DSN=WEST"
+        End Select
+        'Db.Open "DSN=WEST"
         DoEvents
         Set rs = CreateObject("ADODB.Recordset")
         DoEvents
@@ -197,7 +206,17 @@ Private Sub bVai_Click()
         'crea la connessione
         Set Db = CreateObject("ADODB.Connection")
         DoEvents
-        Db.Open "DSN=WEST"
+        Prefix = Left$(StationName, 3)
+        Select Case Prefix
+            Case "str"
+                Db.Open "DSN=STROMBOLI"
+            Case "etn"
+                Db.Open "DSN=ETNA"
+            Case Else
+                Db.Open "DSN=WEST"
+        End Select
+        'Db.Open "DSN=WEST"
+
         DoEvents
         Set rs = CreateObject("ADODB.Recordset")
         DoEvents
@@ -270,17 +289,16 @@ Private Sub bVai_Click()
         Open StationFile For Output As #fn1
         DoEvents
         On Error GoTo 0
-        Print #fn1, StationFile
-        Print #fn1, "3"
-        Print #fn1, "date"
-        Print #1, "time"
-        Print #1, StationName + "_CO2_flux_grams/m2/d"
+        'Print #fn1, StationFile
+        'Print #fn1, "3"
+        'UCAS voluto da Gaetano
+        Print #fn1, "Date;" + StationName + "_CO2_flux_grams/m2/d;"
         DoEvents
     
       While Not rs.EOF
         i = i + 1
         'FileLog = rs("DATA_SAMP") & "," & rs("REVF")
-        Print #fn1, Format(rs("DATA_SAMP"), "dd/mm/yyyy hh:mm:ss") & " " & Format(rs("REVF") * AcK, "0.0000")
+        Print #fn1, Format(rs("DATA_SAMP"), "dd/mm/yyyy hh:mm:ss") & ";" & Format(rs("REVF") * AcK, "0.0000"); ";"
         'Print #fn1, FileLog
     '    Rec(i).Data = rs("DATA_SAMP")
     '    If IsNull(rs("DATA_REVISIONE")) Then

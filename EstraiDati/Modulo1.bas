@@ -82,7 +82,6 @@ ADODB_TRAP:
     Print #fn, "Station file="; StationFile
 
     Close fn
-    End
 
     End
 
