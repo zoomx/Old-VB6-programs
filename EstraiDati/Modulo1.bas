@@ -39,6 +39,7 @@ Public PathName As String
 Function Open_ADODB_Connection() As Boolean
 Dim e As Long
 Dim strVersionInfo As String
+Dim fn As Long
 
 On Error GoTo ADODB_TRAP
 Open_ADODB_Connection = False
@@ -66,7 +67,23 @@ Exit Function
 
 ADODB_TRAP:
     e = Err
-    MsgBox (Error(e) + " +" + Str(e))
+    'MsgBox (Error(e) + " +" + Str(e))
+    On Error GoTo 0
+    fn = FreeFile
+    Open FileLog For Append As #fn
+    Print #fn, "-------------------------------"
+    Print #fn, "Open_ADODB_Connection"
+    Print #fn, Now
+    Print #fn, Err.Number; " "; Err.Description; " "; Err.Source
+'    Print #fn, "StartDate="; fmain_click.
+'    Print #fn, "StopDate="; StopDate
+    Print #fn, "Station Name="; StationName
+'    Print #fn, "records="; Rc
+    Print #fn, "Station file="; StationFile
+
+    Close fn
+    End
+
     End
 
 End Function
@@ -103,7 +120,15 @@ Public Function GetStationsFromFile() As Boolean
     nStations = nStations - 1
     If nStations > 0 Then GetStationsFromFile = True
     
-    
+    Exit Function
 ErrorTrap:
-
+'On Error GoTo 0
+fn = FreeFile
+Open FileLog For Append As #fn
+Print #fn, "-------------------------------"
+Print #fn, Now
+Print #fn, "GetStationsFromFile"
+Print #fn, Err.Number; " "; Err.Description; " "; Err.Source
+Close fn
+End
 End Function

@@ -63,7 +63,10 @@ Attribute VB_Exposed = False
 Option Explicit
 Private Sub Form_Load()
     Dim ret As Boolean
+    
     INIFile = sGetAppPath + "EstraiDati.ini"
+    FileLog = sGetAppPath + "EstraiDati.txt"
+
     ret = GetStationsFromFile
     If ret = False Then
     'allarme
@@ -119,10 +122,12 @@ Private Sub bVai_Click()
     Dim StopDay As Integer
     Dim StartDate As String
     Dim StopDate As String
+    Dim fn As Long
     Dim fn1 As Long
     Dim fn2 As Long
     
-    FileLog = sGetAppPath + "EstraiDati.txt"
+    
+    On Error GoTo ErrorTrap
     
     DoEvents
     
@@ -138,7 +143,7 @@ Private Sub bVai_Click()
     'Definizione data di stop ricerca
     StopYear = Year(Now)
     StopMonth = Month(Now)
-    StopDay = Day(Now)
+    StopDay = Day(Now + 1)
     'Definizione data di start ricerca
     StartDay = 1
     If StopMonth = 1 Then
@@ -223,9 +228,9 @@ Private Sub bVai_Click()
         SQL = SQL + "HEADERS.DATA_SAMP;"
     
         fn2 = FreeFile
-        Open FileLog For Append As #fn2
+        'Open FileLog For Append As #fn2
         DoEvents
-        Print #fn2, Now
+        'Print #fn2, Now
         Me.MousePointer = vbHourglass
         
         DoEvents
@@ -236,8 +241,8 @@ Private Sub bVai_Click()
         
         Me.MousePointer = vbNormal
         
-        Print #fn2, Now
-        Close fn2
+        'Print #fn2, Now
+        'Close fn2
         
         DoEvents
         
@@ -303,6 +308,22 @@ continua:
 
 Next j
 
+Exit Sub
+
 ErrorTrap:
-  
+  On Error GoTo 0
+fn = FreeFile
+Open FileLog For Append As #fn
+Print #fn, "-------------------------------"
+Print #fn, Now
+Print #fn, "bVai_Click"
+Print #fn, Err.Number; " "; Err.Description; " "; Err.Source
+Print #fn, "StartDate="; StartDate
+Print #fn, "StopDate="; StopDate
+Print #fn, "Station Name="; StationName
+Print #fn, "records="; Rc
+Print #fn, "Station file="; StationFile
+Close fn
+End
+
 End Sub
