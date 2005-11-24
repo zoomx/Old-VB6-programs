@@ -1,0 +1,279 @@
+[Root]
+Most Recent Package=Multiamel Parrano
+
+
+[Package|Pacchetto di installazione standard 1|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=C:\CD\_INGV\MultiAmel\VB\Pacchetto
+
+[Package|Pacchetto di installazione standard 1|Configure DAO ISAMs]
+Applicable=Yes
+Xbase=No
+Excel=No
+Exchange=No
+Text=No
+Jet 2.x=No
+Lotus=No
+Paradox=No
+
+[Package|Pacchetto di installazione standard 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Pacchetto di installazione standard 1|Files Found]
+
+[Package|Pacchetto di installazione standard 1|Files Released]
+MSChtIT.dll=
+DBGrdIT.dll=
+
+[Package|Pacchetto di installazione standard 1|Missing Dependency Information]
+
+[Package|Pacchetto di installazione standard 1|Out-of-Date Dependency Information]
+
+[Package|Pacchetto di installazione standard 1|Files Added]
+
+[Package|Pacchetto di installazione standard 1|Files Removed]
+
+[Package|Pacchetto di installazione standard 1|Files In Project]
+C:\CD\_INGV\MultiAmel\VB\MultiAmel.exe=Yes
+C:\WINDOWS\system32\MSVBVM60.DLL=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\WINDOWS\system32\vb6it.dll=Yes
+C:\WINDOWS\system32\COMDLG32.OCX=Yes
+C:\WINDOWS\system32\CMDLGIT.DLL=Yes
+C:\WINDOWS\system32\mscomm32.ocx=Yes
+C:\WINDOWS\system32\MSCOMIT.DLL=Yes
+C:\WINDOWS\system32\comctl32.ocx=Yes
+C:\WINDOWS\system32\CMCTLIT.DLL=Yes
+C:\WINDOWS\system32\dbgrid32.ocx=Yes
+C:\WINDOWS\system32\mschart.ocx=Yes
+C:\Programmi\File comuni\Microsoft Shared\DAO\Dao2535.tlb=Yes
+C:\Programmi\File comuni\Microsoft Shared\DAO\DAO350.DLL=Yes
+C:\WINDOWS\system32\msjet35.dll=Yes
+C:\WINDOWS\system32\msjter35.dll=Yes
+C:\WINDOWS\system32\msjint35.dll=Yes
+C:\WINDOWS\system32\vbajet32.dll=Yes
+C:\WINDOWS\system32\expsrv.dll=Yes
+C:\WINDOWS\system32\msrd2x35.dll=Yes
+C:\WINDOWS\system32\msrepl35.dll=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=Yes
+C:\WINDOWS\system32\VB5DB.DLL=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\WINDOWS\system32\VB6STKIT.DLL=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+
+[Package|Pacchetto di installazione standard 1|Configure Registry Files]
+Applicable=No
+
+[Package|Pacchetto di installazione standard 1|Configure Remote Servers]
+Applicable=No
+
+[Package|Pacchetto di installazione standard 1|Install Locations]
+C:\CD\_INGV\MultiAmel\VB\MultiAmel.exe=$(AppPath)
+C:\WINDOWS\system32\MSVBVM60.DLL=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\vb6it.dll=$(WinSysPath)
+C:\WINDOWS\system32\COMDLG32.OCX=$(WinSysPath)
+C:\WINDOWS\system32\CMDLGIT.DLL=$(WinSysPath)
+C:\WINDOWS\system32\mscomm32.ocx=$(WinSysPath)
+C:\WINDOWS\system32\MSCOMIT.DLL=$(WinSysPath)
+C:\WINDOWS\system32\comctl32.ocx=$(WinSysPath)
+C:\WINDOWS\system32\CMCTLIT.DLL=$(WinSysPath)
+C:\WINDOWS\system32\dbgrid32.ocx=$(WinSysPath)
+C:\WINDOWS\system32\mschart.ocx=$(WinSysPath)
+C:\Programmi\File comuni\Microsoft Shared\DAO\Dao2535.tlb=$(MSDAOPath)
+C:\Programmi\File comuni\Microsoft Shared\DAO\DAO350.DLL=$(MSDAOPath)
+C:\WINDOWS\system32\msjet35.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\msjter35.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\msjint35.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\vbajet32.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\expsrv.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\msrd2x35.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\msrepl35.dll=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\VB5DB.DLL=$(WinSysPath)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINDOWS\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|Pacchetto di installazione standard 1|Configure Shared Files]
+Applicable=Yes
+C:\CD\_INGV\MultiAmel\VB\MultiAmel.exe=No
+
+[Package|Pacchetto di installazione standard 1|Distribution]
+Type=single
+Size=
+Title=MultiAmel
+
+[Package|Pacchetto di installazione standard 1|IconGroups]
+Group0=INGV
+PrivateGroup0=0
+Parent0=$(Programs)
+
+[Package|Pacchetto di installazione standard 1|INGV]
+Icon1=MultiAmel.exe
+Title1=MultiAmel
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|Pacchetto di installazione standard 1|Package]
+PackageFolder=C:\CD\_INGV\MultiAmel\VB\Pacchetto
+ProjectFolder=C:\CD\_INGV\MultiAmel\VB
+ServerSideCab=
+File1=C:\CD\_INGV\MultiAmel\VB\Pacchetto\setup.exe
+File2=C:\CD\_INGV\MultiAmel\VB\Pacchetto\Setup.Lst
+File3=C:\CD\_INGV\MultiAmel\VB\Pacchetto\MultiAmel.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+[Package|Multiamel Parrano|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=C:\CD\_INGV\MultiAmel\VB\Pacchetto
+
+[Package|Multiamel Parrano|Configure DAO ISAMs]
+Applicable=Yes
+Xbase=No
+Excel=No
+Exchange=No
+Text=No
+Jet 2.x=No
+Lotus=No
+Paradox=No
+
+[Package|Multiamel Parrano|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Multiamel Parrano|Files Found]
+
+[Package|Multiamel Parrano|Files Released]
+MSChtIT.dll=
+DBGrdIT.dll=
+
+[Package|Multiamel Parrano|Missing Dependency Information]
+
+[Package|Multiamel Parrano|Out-of-Date Dependency Information]
+
+[Package|Multiamel Parrano|Files Added]
+C:\CD\_INGV\MultiAmel\VB\parrano.prg=
+C:\CD\_INGV\MultiAmel\VB\MultiAmel.ini=
+
+[Package|Multiamel Parrano|Files Removed]
+
+[Package|Multiamel Parrano|Files In Project]
+C:\CD\_INGV\MultiAmel\VB\MultiAmel.exe=Yes
+C:\WINDOWS\system32\MSVBVM60.DLL=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\WINDOWS\system32\vb6it.dll=Yes
+C:\WINDOWS\system32\COMDLG32.OCX=Yes
+C:\WINDOWS\system32\CMDLGIT.DLL=Yes
+C:\WINDOWS\system32\mscomm32.ocx=Yes
+C:\WINDOWS\system32\MSCOMIT.DLL=Yes
+C:\WINDOWS\system32\comctl32.ocx=Yes
+C:\WINDOWS\system32\CMCTLIT.DLL=Yes
+C:\WINDOWS\system32\dbgrid32.ocx=Yes
+C:\WINDOWS\system32\mschart.ocx=Yes
+C:\Programmi\File comuni\Microsoft Shared\DAO\Dao2535.tlb=Yes
+C:\Programmi\File comuni\Microsoft Shared\DAO\DAO350.DLL=Yes
+C:\WINDOWS\system32\msjet35.dll=Yes
+C:\WINDOWS\system32\msjter35.dll=Yes
+C:\WINDOWS\system32\msjint35.dll=Yes
+C:\WINDOWS\system32\vbajet32.dll=Yes
+C:\WINDOWS\system32\expsrv.dll=Yes
+C:\WINDOWS\system32\msrd2x35.dll=Yes
+C:\WINDOWS\system32\msrepl35.dll=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=Yes
+C:\WINDOWS\system32\VB5DB.DLL=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\WINDOWS\system32\VB6STKIT.DLL=Yes
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+C:\CD\_INGV\MultiAmel\VB\parrano.prg=Yes
+C:\CD\_INGV\MultiAmel\VB\MultiAmel.ini=Yes
+
+[Package|Multiamel Parrano|Configure Registry Files]
+Applicable=No
+
+[Package|Multiamel Parrano|Configure Remote Servers]
+Applicable=No
+
+[Package|Multiamel Parrano|Install Locations]
+C:\CD\_INGV\MultiAmel\VB\MultiAmel.exe=$(AppPath)
+C:\WINDOWS\system32\MSVBVM60.DLL=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\vb6it.dll=$(WinSysPath)
+C:\WINDOWS\system32\COMDLG32.OCX=$(WinSysPath)
+C:\WINDOWS\system32\CMDLGIT.DLL=$(WinSysPath)
+C:\WINDOWS\system32\mscomm32.ocx=$(WinSysPath)
+C:\WINDOWS\system32\MSCOMIT.DLL=$(WinSysPath)
+C:\WINDOWS\system32\comctl32.ocx=$(WinSysPath)
+C:\WINDOWS\system32\CMCTLIT.DLL=$(WinSysPath)
+C:\WINDOWS\system32\dbgrid32.ocx=$(WinSysPath)
+C:\WINDOWS\system32\mschart.ocx=$(WinSysPath)
+C:\Programmi\File comuni\Microsoft Shared\DAO\Dao2535.tlb=$(MSDAOPath)
+C:\Programmi\File comuni\Microsoft Shared\DAO\DAO350.DLL=$(MSDAOPath)
+C:\WINDOWS\system32\msjet35.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\msjter35.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\msjint35.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\vbajet32.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\expsrv.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\msrd2x35.dll=$(WinSysPathSysFile)
+C:\WINDOWS\system32\msrepl35.dll=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT40.DLL=$(WinSysPathSysFile)
+C:\WINDOWS\system32\VB5DB.DLL=$(WinSysPath)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\WINDOWS\system32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Programmi\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\CD\_INGV\MultiAmel\VB\parrano.prg=$(AppPath)
+C:\CD\_INGV\MultiAmel\VB\MultiAmel.ini=$(AppPath)
+
+[Package|Multiamel Parrano|Configure Shared Files]
+Applicable=Yes
+C:\CD\_INGV\MultiAmel\VB\MultiAmel.exe=No
+C:\CD\_INGV\MultiAmel\VB\parrano.prg=No
+C:\CD\_INGV\MultiAmel\VB\MultiAmel.ini=No
+
+[Package|Multiamel Parrano|Distribution]
+Type=single
+Size=
+Title=MultiAmel
+
+[Package|Multiamel Parrano|Package]
+PackageFolder=C:\CD\_INGV\MultiAmel\VB\Pacchetto
+ProjectFolder=C:\CD\_INGV\MultiAmel\VB
+ServerSideCab=
+File1=C:\CD\_INGV\MultiAmel\VB\Pacchetto\setup.exe
+File2=C:\CD\_INGV\MultiAmel\VB\Pacchetto\Setup.Lst
+File3=C:\CD\_INGV\MultiAmel\VB\Pacchetto\MultiAmel.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+[Package|Multiamel Parrano|IconGroups]
+Group0=INGV
+PrivateGroup0=0
+Parent0=$(Programs)
+
+[Package|Multiamel Parrano|INGV]
+Icon1=MultiAmel.exe
+Title1=MultiAmel
+StartIn1=$(AppPath)
+Key1=Icon1
