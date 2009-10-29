@@ -73,20 +73,20 @@ Private Sub Form_Load()
     End If
     PathName = sReadINI("Setup", "SavePath", INIFile)
     Debug.Print PathName
-    Label1.Caption = "INGV-PA" + vbCrLf + "Roberto Maugeri" + vbCrLf + "2002 v.1.0"
-    DoEvents
-    bVai.Enabled = False
-    DoEvents
-    bTest.Enabled = False
-    DoEvents
+    Label1.Caption = "INGV-PA" + vbCrLf + "Roberto Maugeri" + vbCrLf + "2009 v.2.0"
+'    DoEvents
+'    bVai.Enabled = False
+'    DoEvents
+'    bTest.Enabled = False
+'    DoEvents
     
 End Sub
 
 Private Sub Form_Paint()
     'bTest_Click
-    bVai_Click
-    DoEvents
-    End
+'    bVai_Click
+'    DoEvents
+'    End
 End Sub
 
 Private Sub bEnd_Click()
@@ -120,6 +120,8 @@ Private Sub bVai_Click()
     Dim StopMonth As Integer
     Dim StartDay As Integer
     Dim StopDay As Integer
+    Dim StartDatei As Date
+    Dim StopDatei As Date
     Dim StartDate As String
     Dim StopDate As String
     Dim fn As Long
@@ -127,36 +129,40 @@ Private Sub bVai_Click()
     Dim fn2 As Long
     Dim Prefix As String
     
-    On Error GoTo ErrorTrap
+'    On Error GoTo ErrorTrap
     
     DoEvents
     
-    ret = Open_ADODB_Connection
+'    ret = Open_ADODB_Connection
     
     DoEvents
     
-    If ret = False Then
-        Exit Sub
-    End If
+'    If ret = False Then
+'        Exit Sub
+'    End If
     
+    StopDatei = Now
+    StartDatei = Int(Now - 1)
+    
+    Debug.Print StartDatei
+    Debug.Print StopDatei
     
     'Definizione data di stop ricerca
-    StopYear = Year(Now)
-    StopMonth = Month(Now)
-    StopDay = Day(Now + 1)
+    StopYear = Year(StopDatei)
+    StopMonth = Month(StopDatei)
+    StopDay = Day(StopDatei)
     'Definizione data di start ricerca
-    StartDay = 1
-    If StopMonth = 1 Then
-        StartYear = StopYear - 1
-        StartMonth = 12
-    Else
-        StartYear = StopYear
-        StartMonth = StopMonth - 1
-    End If
+    StartDay = Day(StartDatei)
+    StartMonth = Month(StartDatei)
+    StartYear = Year(StartDatei)
        
     'creazione startdate e stopdate
     StopDate = Trim(Str(StopYear)) + "/" + Format(StopMonth, "00") + "/" + Format(StopDay, "00")
     StartDate = Trim(Str(StartYear)) + "/" + Format(StartMonth, "00") + "/" + Format(StartDay, "00")
+    
+    Debug.Print StartDate
+    Debug.Print StopDate
+    
     
     'aggiunta dei cancelletti #
     StartDate = "#" + StartDate + "#"
@@ -165,13 +171,13 @@ Private Sub bVai_Click()
     DoEvents
     
     'prova
-'    StartDate = "#2000/11/01#"
+    StartDate = "#2009/10/01#"
 '    StopDate = "#2000/12/31#"
     
     'Per tutte le stazioni
     For j = 1 To nStations
-        StationName = "ETN01"
-        StationName = Stations(j)
+        StationName = "STR01"
+        'StationName = Stations(j)
         
         DoEvents
         
@@ -179,9 +185,10 @@ Private Sub bVai_Click()
         Set Db = CreateObject("ADODB.Connection")
         DoEvents
         Prefix = Left$(StationName, 3)
+        Prefix = "str"
         Select Case Prefix
             Case "str"
-                Db.Open "DSN=STROMBOLI"
+                Db.Open "DSN=WEST"
             Case "etn"
                 Db.Open "DSN=ETNA"
             Case Else
@@ -245,11 +252,19 @@ Private Sub bVai_Click()
         
     '    SQL = SQL + "( HEADERS.STATION_ID)='ETN01')) ORDER BY "
         SQL = SQL + "HEADERS.DATA_SAMP;"
-    
+        
+        'Modifica
+'        SQL = "SELECT c.name, h.samplingdate, r.value FROM Channels AS c, Results AS r, Headers AS h "
+'        SQL = SQL + "WHERE ((([h].[samplingdate])>#08/01/2009#) AND (([c].[channelid])=[r].[channelid]) "
+'        SQL = SQL + "AND (([h].[id])=[r].[headerid]) AND (([c].[id])=52 Or ([c].[id])=53));"
+        
+        
         fn2 = FreeFile
-        'Open FileLog For Append As #fn2
+        Open FileLog For Append As #fn2
         DoEvents
-        'Print #fn2, Now
+        Print #fn2, Now
+        Print #fn2, SQL
+        Close #fn2
         Me.MousePointer = vbHourglass
         
         DoEvents
@@ -283,8 +298,9 @@ Private Sub bVai_Click()
         Debug.Print StationName; " records-->"; Rc
     
         fn1 = FreeFile
-        StationFile = PathName + "\" + StationName + ".dat"
+        'StationFile = PathName + "\" + StationName + ".dat"
         'StationFile = StationName + ".txt"
+        StationFile = App.Path + "/" + StationName + ".txt"
         On Error GoTo ErrorTrap
         Open StationFile For Output As #fn1
         DoEvents

@@ -1,5 +1,1 @@
-etn01
-etn02
-etn03
-etn04
-str01
+STR01

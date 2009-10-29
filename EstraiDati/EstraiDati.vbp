@@ -1,5 +1,5 @@
 Type=Exe
-Reference=*\G{00000201-0000-0010-8000-00AA006D2EA4}#2.1#0#C:\Programmi\File comuni\System\ADO\msado21.tlb#Microsoft ActiveX Data Objects 2.1 Library
+Reference=*\G{00000201-0000-0010-8000-00AA006D2EA4}#2.1#0#C:\Programmi\File comuni\system\ado\msado21.tlb#Microsoft ActiveX Data Objects 2.1 Library
 Form=fMain.frm
 Module=Modulo1; Modulo1.bas
 Module=IniFiles; IniFiles.bas
@@ -12,7 +12,7 @@ Command32=""
 Name="EstraiDati"
 HelpContextID="0"
 CompatibleMode="0"
-MajorVer=1
+MajorVer=2
 MinorVer=0
 RevisionVer=0
 AutoIncrementVer=0
@@ -37,3 +37,6 @@ Unattended=0
 Retained=0
 ThreadPerObject=0
 MaxNumberOfThreads=1
+
+[MS Transaction Server]
+AutoRefresh=1
