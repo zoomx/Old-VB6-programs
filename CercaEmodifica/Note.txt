@@ -1,0 +1,2 @@
+ricerca di tutti i file .csv a partire da una cartella nelle sottocartelle.
+Aprire il file, eliminare la prima riga e rinominarlo in xl
