@@ -1,12 +1,16 @@
 //***************
-//* MultiAmel01 *
+//* MultiAmel02 *
 //***************
 
 //Roberto Maugeri Luglio 2004
 //r.maugeri@pa.ingv.it
 
-Versione$="MultiAmel01 Luglio 2004 Conducibilita' range 0-20"
+Versione$="MultiAmel02 Aprile 2005"
 
+//MultiAmel02
+//Corretto il puntatore al nome della stazione adesso 664
+//Cambiata la portata della conducibilita a 0-20
+//Cambiati i Poseidon in MultiAmel
 
 //MultiAmel01
 //Eliminazione della lettura dei canali via convertitore e
@@ -316,7 +320,7 @@ UTrigLev=5	//5 Trigger
 
 
 //Dati utente
-Stazione$="Poseidon"	//Nome della Stazione
+Stazione$="MultiAmel"	//Nome della Stazione
 CanaleNome$=""
 DIM CanaleNomep(19)	//Nome del Canale
 DIM CanaleAttivo(19)	//Indica se il canale e' attivo o meno
@@ -473,7 +477,7 @@ tCom=?		//Memorizzazione tempo inizio routine comandi
 XMIT+
 PCLR Extern
 PCLR INH
-PRINT"Poseidon"
+PRINT"MultiAmel"
 
 
 Comandi2:
@@ -1343,7 +1347,7 @@ READRTC
 RTIME
 PRINT
 PRINT
-PRINT"Poseidon"
+PRINT"MultiAmel"
 PRINT
 PRINT"Program by Roberto Maugeri 1999"
 RTIME
@@ -1365,9 +1369,9 @@ RETURN
 
 
 //----------------------------------------------------------------------------------------
-TestPC:		//Esegue un test di Poseidon con uscita su RS232
+TestPC:		//Esegue un test di MultiAmel con uscita su RS232
 PRINT""
-PRINT"Poseidon"
+PRINT"MultiAmel"
 PRINT
 PRINT"Program by Roberto Maugeri Dicembre 1999"
 PRINT"zoom7@freemail.it"
@@ -1942,7 +1946,7 @@ RETURN
 //-------------------------------------------------------------
 DumpRam:
 XMIT+
-PRINT"POSEIDON"
+PRINT"MultiAmel"
 PRINT ?(5),"/",?(4),"/",?(3)," ",?(2),":",?(1),":",?(0)
 PRINT
 PRINT"Variables Dump"
@@ -1987,9 +1991,9 @@ RETURN
 //-------------------------------------------------------------
 GetStation:
 // Scarica il nome della stazione
-Intg=941
+Intg=664
 
-PRINT GETS(941)
+PRINT GETS(664)
 RETURN
 
 //Intg=941
